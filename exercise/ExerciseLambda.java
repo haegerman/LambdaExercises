@@ -3,11 +3,10 @@
 //import static org.junit.Assert.fail;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Map.Entry;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 //import org.junit.Test;		
 
@@ -39,7 +38,6 @@ public class ExerciseLambda {
     public void printAllWords() {
         // TODO
     	listOfWords.forEach( s -> System.out.print(s + " "));
-
 //    	fail();
     }
 
@@ -49,28 +47,23 @@ public class ExerciseLambda {
 //	 * of Strings.
 //	 */
 //	@Test
-	public void stringOfFirstLetterFromEveryWord(List<String> listOfWords) {
-//		String listOfWords = Arrays.asList(listOfWords).subList(0, 1).map(s -> s.substring(0, 1))
-//			    .collect(Collectors.joining());
-		List<List<String>> s = Arrays.asList(listOfWords).subList(0, 2);
-		System.out.println("");
-		System.out.println(s);
+	public void stringOfFirstLetterFromEveryWord(Predicate<String> firstLetter) {
+//		List<List<String>> s = Arrays.asList(listOfWords).forEach(s -> {s.subList(0, 1)}));
+//		System.out.println("\n");
+//		listOfWords.stream().filter(firstLetter).forEach(s -> System.out.println(s));
+
+		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+		for (int i = 0; i < listOfWords.size(); i++) {
+		    if (map.containsKey(listOfWords[i].charAt(0))) {
+		        map.put(listOfWords[i].charAt(0), map.get(listOfWords[i].charAt(0)) + 1);
+		    } else {
+		        map.put(listOfWords[i].charAt(0), 1);
+		    }
+		}
+		for (Entry<Character, Integer> entry : map.entrySet()) {
+		    System.out.println("" + entry.getKey() + " - " + entry.getValue());
+		}
 		
-//		  String firstLetter = "";
-//		  for(String s : text)
-//		  {
-//		    firstLetter += s.charAt(0);
-//		  }
-//		  return firstLetter;
-		
-//		listOfWords.forEach(s -> { 			
-//			if (firstLetter.test(s)) {		
-//				System.out.println(s);
-//			}
-//		});
-//	}
-	
-	
 		// String result;
 		// TODO assertEquals("epicscbsbaaloietmloi", result);
 //		fail();
